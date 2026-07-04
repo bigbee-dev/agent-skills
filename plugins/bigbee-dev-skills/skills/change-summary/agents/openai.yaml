@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Summary"
+  short_description: "Summarize changes for review"
+  default_prompt: "Use $change-summary to summarize the current changes as a grouped review packet with file summaries, contracts, verification, and risks."
