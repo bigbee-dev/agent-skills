@@ -1,0 +1,20 @@
+{
+  "name": "bigbee-dev-skills",
+  "version": "0.1.0",
+  "description": "BigBee shared Codex skills for development tasks.",
+  "author": {
+    "name": "BigBee"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "BigBee Dev Skills",
+    "shortDescription": "Shared Codex skills for BigBee development tasks.",
+    "longDescription": "BigBee Dev Skills packages reusable Codex skills for review, fix, refactor, and verification workflows.",
+    "developerName": "BigBee",
+    "category": "Developer Tools",
+    "capabilities": [
+      "skills"
+    ],
+    "defaultPrompt": "Use BigBee Dev Skills for this development task."
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Fix Refactor Loop"
+  short_description: "Iterate review, fixes, and refactors"
+  default_prompt: "Use $review-fix-refactor-loop to review, fix, verify, refactor, and re-review this change until it converges."

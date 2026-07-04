@@ -1,0 +1,20 @@
+{
+  "name": "bigbee-dev-agent-skills",
+  "interface": {
+    "displayName": "BigBee Agent Skills"
+  },
+  "plugins": [
+    {
+      "name": "bigbee-dev-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/bigbee-dev-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
