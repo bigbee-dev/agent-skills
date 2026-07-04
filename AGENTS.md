@@ -39,4 +39,4 @@ The current history uses short imperative subjects, such as `Add BigBee Codex sk
 
 ## Agent-Specific Instructions
 
-Keep changes narrowly scoped. Do not rewrite existing skill instructions unless the request targets that skill. When adding a skill, update both the plugin contents and any user-facing listing that should mention it, especially `README.md`.
+Keep changes narrowly scoped. Do not rewrite existing skill instructions unless the request targets that skill. When adding a skill, update both the plugin contents and any user-facing listing that should mention it, especially `README.md`. Also update `plugins/bigbee-dev-skills/.codex-plugin/plugin.json` so the plugin `version` changes and Codex can reinstall the refreshed plugin.

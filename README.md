@@ -12,6 +12,32 @@ codex plugin marketplace add bigbee-dev/agent-skills --ref main --sparse .agents
 
 Then install `bigbee-dev-skills` from the Codex plugin browser.
 
+## Refresh or Upgrade
+
+After adding or changing a skill, update
+`plugins/bigbee-dev-skills/.codex-plugin/plugin.json` so the `version` changes.
+For local iteration, keep the base version and add a Codex cachebuster suffix:
+
+```json
+"version": "0.1.0+codex.local-YYYYMMDD-HHMMSS"
+```
+
+After the change is committed and pushed to the marketplace ref, refresh the
+configured marketplace snapshot and reinstall the plugin:
+
+```bash
+codex plugin marketplace upgrade bigbee-dev-agent-skills
+codex plugin add bigbee-dev-skills@bigbee-dev-agent-skills
+```
+
+Start a new Codex thread after reinstalling so newly added skills are loaded.
+If the marketplace was installed under a different name, check it with:
+
+```bash
+codex plugin marketplace list
+codex plugin list
+```
+
 ## Included Plugins
 
 - `bigbee-dev-skills`: shared Codex skills for development tasks.
