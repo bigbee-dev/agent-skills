@@ -45,5 +45,6 @@ codex plugin list
 ## Included Skills
 
 - `change-summary`: summarize local, branch, PR, or manual changes as a grouped review packet with file summaries, contracts, verification, and risks.
+- `publish-pr-review-loop`: publish a ready-for-review PR by default, address accepted Codex feedback, and request re-review until the current head is clean.
 - `review-fix-refactor-loop`: iteratively review, fix, verify, refactor, and re-review code until the in-scope work converges.
 - `strengthen-tests`: create, review, and improve tests so they exercise real production behavior and detect meaningful regressions.
