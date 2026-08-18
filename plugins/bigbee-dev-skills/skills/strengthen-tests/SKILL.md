@@ -1,6 +1,6 @@
 ---
 name: strengthen-tests
-description: Create, review, and improve automated tests that exercise intended production behavior and detect meaningful regressions. Use whenever Codex writes, modifies, reviews, or hardens test code, especially for tests with excessive mocking, weak or interaction-only assertions, duplicated production logic, implementation coupling, or paths that bypass the target code.
+description: "Review, create, and improve automated tests that exercise real production behavior and detect meaningful regressions. Use when test quality is the primary objective: auditing existing tests, replacing weak or over-mocked tests, adding missing behavioral coverage, or investigating why tests missed a defect."
 ---
 
 # Strengthen Tests
@@ -11,21 +11,17 @@ Improve the defect-detection power of tests while preserving appropriate speed, 
 
 A valuable test fails for the right reason when a realistic defect is introduced in the targeted production behavior.
 
-Do not optimize for mock count, assertion count, coverage percentage, or integration depth alone.
+Judge test value by defect-detection power rather than mock count, assertion count, coverage percentage, or integration depth alone.
 
 ## Choose the Operating Mode
 
-Use an authoring quality gate when tests are being added or modified as part of ordinary implementation:
+- `audit-only`: inspect and report when the user asks for an assessment, diagnosis, or review without changes
+- `improve`: repair verified weaknesses when the user asks to strengthen or rework existing tests
+- `author`: create tests when adding missing behavioral coverage is the primary deliverable
 
-1. Identify the behavior the test must prove.
-2. Confirm the real target code executes.
-3. Assert an observable outcome.
-4. Keep only justified test doubles.
-5. Run the narrowest meaningful verification.
+Choose one mode before editing. Preserve the scope and sequencing of any broader task. Keep this workflow focused on test quality while the surrounding task retains ownership of production implementation, root-cause analysis, and product decisions.
 
-Use the full review-and-improvement workflow when the user explicitly asks to audit, strengthen, review, or improve tests.
-
-Remain read-only when the user asks for an audit, diagnosis, or report without changes. Otherwise, improve verified weaknesses within scope.
+In `audit-only` mode, remain read-only. In `improve` and `author` modes, change only the tests and test support code needed for the requested behavioral coverage. Escalate production design changes separately.
 
 ## Establish Scope
 
@@ -38,7 +34,7 @@ Before judging a test, identify:
 - the repository's existing test conventions
 - external systems and nondeterministic dependencies
 
-Trace the actual production path. Do not assess test quality from the test file alone, and do not broaden into unrelated tests or production behavior.
+Trace the actual production path rather than assessing test quality from the test file alone. Keep the analysis within the requested behavior and related tests.
 
 ## Define the Behavioral Contract
 
@@ -52,16 +48,18 @@ For each target, establish:
 
 Prefer observable outcomes such as returned values, errors, state transitions, persisted records, emitted domain events, externally visible responses, or permitted and prevented side effects.
 
-## Choose an Appropriate Test Boundary
+## Choose a Correct Test Boundary
 
-Use the narrowest test level that can prove the behavior confidently:
+Use the most stable observable boundary that proves the behavior and exercises the relevant production path. Prefer a public interface that captures the real contract. Move inward only when a narrower boundary is itself a meaningful contract and materially improves determinism, speed, or failure precision without coupling the test to implementation details.
 
 - Unit tests execute the real target unit and keep deterministic, inexpensive collaborators real when they are part of that unit.
 - Integration tests exercise meaningful collaboration between internal components.
 - Contract tests verify serialization, protocol, schema, or compatibility behavior at a boundary.
 - End-to-end tests exercise an externally visible flow without replacing its important internal behavior.
 
-Do not turn every unit test into an integration test. Do not label a test as integration coverage when the important integration is mocked out.
+Keep the test-level label honest about which collaboration actually executes.
+
+When no boundary can exercise the real behavior meaningfully, classify the issue as a `testability-problem` and report the missing seam. Prefer that explicit gap over a proxy test that creates false confidence. Make production design changes only with explicit user approval.
 
 ## Use Test Doubles Deliberately
 
@@ -111,7 +109,9 @@ Classify accepted findings as:
 - `legitimate-boundary`: the test double is appropriate and should remain
 - `follow-up`: valid concern outside the current scope
 
-## Improve Tests
+## Author or Improve Tests
+
+In `author` mode, add the smallest coherent set of tests that proves the requested behavior at the correct boundary. Cover material failure, boundary, or state-transition cases when they are part of the requested contract.
 
 For each accepted in-scope weakness:
 
@@ -126,9 +126,9 @@ For each accepted in-scope weakness:
 9. Follow repository conventions unless they perpetuate the weakness being fixed.
 10. Run relevant verification and re-review the changed test.
 
-Do not delete valuable coverage merely because its current form is weak. Replace it with a stronger test when practical.
+Preserve valuable coverage by replacing weak forms with stronger tests when practical.
 
-Do not change production behavior merely to make a test easier to write. Report and escalate `testability-problem` findings that require broader design changes.
+Keep production behavior stable while strengthening tests. Report and escalate `testability-problem` findings that require broader design changes.
 
 ## Check Regression Sensitivity
 
@@ -150,22 +150,15 @@ After verification, confirm that:
 - each test can catch its stated regression
 - no unnecessary slowness or nondeterminism was introduced
 
-Re-review after changes. Stop when no verified, in-scope test-quality weaknesses remain. If two improvement rounds do not converge, pause and reclassify the remaining findings before editing again.
+Re-review the requested test-quality scope after changes. Stop when no verified, in-scope weakness remains. If two improvement rounds do not converge, pause and reclassify the remaining findings before editing again.
 
 If verification cannot run, report the exact reason without claiming success.
 
 ## Report the Result
 
-For an ordinary authoring quality gate, keep the closeout brief. Include:
+Include:
 
-- behavior tested
-- important production path exercised
-- significant test doubles retained and why
-- verification commands and results
-
-For an explicit audit or strengthening run, include:
-
-- mode: audit-only or improved
+- mode: audit-only, improved, or authored
 - target behavior and production path
 - weaknesses found and improvements made
 - test doubles removed, replaced, and retained with reasons

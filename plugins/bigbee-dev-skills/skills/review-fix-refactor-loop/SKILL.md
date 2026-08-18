@@ -1,6 +1,6 @@
 ---
 name: review-fix-refactor-loop
-description: Use when Codex should iteratively review, fix, verify, refactor, and re-review code until convergence. Triggers include review-fix loop, review then fix, refactor review, iterative cleanup, review/fix/refactor cycle, final hardening, or requests to keep reviewing and improving until no in-scope issues remain.
+description: Iteratively review, fix, verify, refactor, and re-review scoped code changes until correctness and structure converge.
 ---
 
 # Review Fix Refactor Loop
@@ -13,6 +13,10 @@ Run a disciplined convergence loop:
 4. Stop when both correctness and refactor reviews are clean within scope.
 
 ## Core Invariant
+
+Own review, classification, fixing, refactoring, and convergence when this skill
+is invoked. Use other review guidance as criteria rather than as an independent
+review loop unless the user explicitly requests multiple workflows.
 
 Do not begin refactoring until the correctness loop is clean.
 

@@ -2,3 +2,6 @@ interface:
   display_name: "Publish PR Review Loop"
   short_description: "Publish PRs and resolve Codex reviews"
   default_prompt: "Use $publish-pr-review-loop to publish this change and iterate on Codex reviews until it converges."
+
+policy:
+  allow_implicit_invocation: false

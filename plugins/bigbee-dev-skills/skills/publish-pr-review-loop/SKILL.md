@@ -1,6 +1,6 @@
 ---
 name: publish-pr-review-loop
-description: Publish a GitHub pull request and run a Codex review/fix/re-review loop until the current head has no verified findings worth fixing. Use when the user asks to create, open, publish, or ship a PR with Codex review follow-up, asks for a PR review loop, or wants Codex feedback addressed repeatedly before handoff.
+description: Publish a GitHub pull request and iterate on Codex review feedback until the current head is clean.
 ---
 
 # Publish PR Review Loop
@@ -11,6 +11,9 @@ findings.
 
 ## Core Invariants
 
+- Own the complete publish and PR-review workflow when this skill is invoked.
+  Treat other publishing or review-comment workflows as supporting references,
+  not parallel orchestrators.
 - Create a new PR as ready for review unless the user explicitly requests a
   draft.
 - Never pass a draft flag merely because the work was agent-generated.
