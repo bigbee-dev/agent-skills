@@ -21,7 +21,7 @@ Judge test value by defect-detection power rather than mock count, assertion cou
 
 Choose one mode before editing. Preserve the scope and sequencing of any broader task. Keep this workflow focused on test quality while the surrounding task retains ownership of production implementation, root-cause analysis, and product decisions.
 
-In `audit-only` mode, remain read-only. In `improve` and `author` modes, change only the tests and test support code needed for the requested behavioral coverage. Escalate production design changes separately.
+In `audit-only` mode, remain read-only. For standalone `improve` and `author` requests, change only the tests and test support code needed for the requested coverage. When this skill supports a broader implementation request, continue production work already authorized by that request without asking again. Ask only for an unresolved decision that materially changes the agreed scope or behavior; the skill itself grants no additional authorization.
 
 ## Establish Scope
 
@@ -59,7 +59,7 @@ Use the most stable observable boundary that proves the behavior and exercises t
 
 Keep the test-level label honest about which collaboration actually executes.
 
-When no boundary can exercise the real behavior meaningfully, classify the issue as a `testability-problem` and report the missing seam. Prefer that explicit gap over a proxy test that creates false confidence. Make production design changes only with explicit user approval.
+When no boundary can exercise the real behavior meaningfully, classify the issue as a `testability-problem` and identify the missing seam. Prefer that explicit gap over a proxy test that creates false confidence. Resolve the seam when the surrounding request already authorizes the production change and the requirements determine it. Otherwise report the missing decision and continue independent in-scope work.
 
 ## Use Test Doubles Deliberately
 
@@ -128,7 +128,7 @@ For each accepted in-scope weakness:
 
 Preserve valuable coverage by replacing weak forms with stronger tests when practical.
 
-Keep production behavior stable while strengthening tests. Report and escalate `testability-problem` findings that require broader design changes.
+Preserve the behavior being tested during test-quality changes. A broader implementation request may separately authorize changing that behavior. Report `testability-problem` findings that still require a decision outside the existing authorization.
 
 ## Check Regression Sensitivity
 

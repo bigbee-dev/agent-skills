@@ -32,7 +32,7 @@ Before reviewing, establish:
 - relevant tests or verification commands
 - owner, module, API, or product boundaries
 
-Do not broaden scope without user approval.
+Use the current request and prior instructions to determine the authorized scope. Continue fixes and verification already covered by that scope without asking again. Ask only when an unresolved decision materially changes the agreed scope or behavior and cannot be resolved from existing requirements. Continue independent in-scope work while a decision is pending. This skill does not authorize additional external actions.
 
 ## Finding Classification
 
@@ -41,7 +41,7 @@ Before fixing any finding, classify it:
 - `correctness-blocker`: real bug, regression, broken contract, unsafe behavior, missing required test, or issue blocking the current task
 - `refactor-candidate`: behavior-preserving improvement that reduces complexity, duplication, brittle boundaries, unclear naming, or poor testability
 - `follow-up`: real issue, but adjacent, broader, subjective, or outside the current task boundary
-- `stop-and-escalate`: requires product, API, schema, protocol, storage, ownership, or release-process decision
+- `stop-and-escalate`: requires an unresolved product, API, schema, protocol, storage, ownership, or release-process decision outside the existing authorization; implementing an already-decided change is not an escalation
 
 Fix only `correctness-blocker` findings during the correctness loop.
 
