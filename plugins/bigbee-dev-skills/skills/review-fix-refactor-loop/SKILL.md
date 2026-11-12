@@ -1,6 +1,7 @@
 ---
 name: review-fix-refactor-loop
 description: Iteratively review, fix, verify, refactor, and re-review scoped code changes until correctness and structure converge.
+disable-model-invocation: true
 ---
 
 # Review Fix Refactor Loop

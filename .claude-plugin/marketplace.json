@@ -1,0 +1,14 @@
+{
+  "name": "bigbee-dev-agent-skills",
+  "description": "Shared BigBee development skills for Claude Code.",
+  "owner": {
+    "name": "BigBee"
+  },
+  "plugins": [
+    {
+      "name": "bigbee-dev-skills",
+      "source": "./plugins/bigbee-dev-skills",
+      "description": "Shared development skills for change summaries, PR reviews, refactoring, and test strengthening."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 name: publish-pr-review-loop
 description: Publish a GitHub pull request and iterate on Codex review feedback until the current head is clean.
+disable-model-invocation: true
 ---
 
 # Publish PR Review Loop
